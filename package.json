@@ -20,6 +20,7 @@
   "homepage": "https://github.com/aclelandx/Social-Network-Api-NoSQL-Adam-Cleland#readme",
   "dependencies": {
     "express": "^4.17.3",
-    "mongoose": "^6.2.9"
+    "mongoose": "^6.2.9",
+    "validator": "^13.7.0"
   }
 }
