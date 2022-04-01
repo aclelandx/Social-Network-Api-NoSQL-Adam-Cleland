@@ -1,0 +1,25 @@
+{
+  "name": "social-network-api-nosql-adam-cleland",
+  "version": "1.0.0",
+  "description": "We are tasked with creating a social network API that utilizes NoSQL type database. In this application the DB system that we are using in mongo, this allows us to store and save information on a database and interact with it instead of using a SQL based DB. This application an assignment for The Ohio State Full Stack Boot Camp.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aclelandx/Social-Network-Api-NoSQL-Adam-Cleland.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aclelandx/Social-Network-Api-NoSQL-Adam-Cleland/issues"
+  },
+  "homepage": "https://github.com/aclelandx/Social-Network-Api-NoSQL-Adam-Cleland#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "mongoose": "^6.2.9"
+  }
+}
