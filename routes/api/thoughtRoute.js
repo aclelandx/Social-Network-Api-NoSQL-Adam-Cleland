@@ -1,5 +1,5 @@
 const router = require(`express`).Router();
-const { showAllUsers, showOneUser, addNewUser } = require(`../../controllers/thoughtController`)
+const { showAllThoughts, showOneThought, addNewThought, removeThought, updateThought } = require(`../../controllers/thoughtController`)
 
 router.use()
 

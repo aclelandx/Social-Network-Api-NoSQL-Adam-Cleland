@@ -1,4 +1,5 @@
 // import the mongoose NPM package and store it in a constant variable called mongoose.
+const { assert } = require("console");
 const mongoose = require(`mongoose`);
 const thought = require(`./thought`);
 
