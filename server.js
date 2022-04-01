@@ -30,4 +30,9 @@ i need to be able to add users, delete users, along with updating the informatio
 i need to be able to add thoughts that are connected to the users information and that is saved ho it belongs too, along ith this i ill ant the subdocum,ent inside of the thoughts model to be reactions that have been applied to the individual thoughts.
 
 API ROUTES that i need to make.
+
+get user - show all
+get user:id - show one according to the id
+post user - add a new user to the db
+put user:id - update the information for a user
 */
