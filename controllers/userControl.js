@@ -4,13 +4,22 @@ const app = require(`express`)
 const userRequestHandler = {
 
     showAllUsers(req, res) {
-        res.json(`showall`)
+        User.find().then((users) => res.json(users))
+            .catch((err) => res.status(500).json(err))
     },
     showOneUser(req, res) {
-        res.json(`showone`)
+        User.findOne({ _id: req.params.id })
+            .select(`-__v`).populate(`thoughts`)
+            .then((user) => {
+                !user
+                    ? res.status(404).json({ message: 'No user found with that ID' })
+                    : res.json(user)
+            }).catch((err) => res.status(500).json(err));
     },
     addNewUser(req, res) {
-        res.json(`addone`)
+        User.create(req.body)
+            .then((userData) => res.json(userData))
+            .catch((err) => res.status(500).json(err))
     },
     updateUser(req, res) {
         res.json(`changeone`)
