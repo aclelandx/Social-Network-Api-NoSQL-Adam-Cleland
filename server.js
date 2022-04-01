@@ -1,7 +1,8 @@
+// imports the npm package for the express server
 const express = require('express');
+// imports the connection for the mongodb
 const db = require('./config/connection');
-// Require model
-const { User, Thought, Reaction } = require('./models');
+// imports the routes router from the routes folder.
 const routes = require(`./routes`)
 
 // defining that the port that we will be  
@@ -12,27 +13,12 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+// directs all the routes to the routes router
 app.use(routes);
 
+// once the db is connected, tell the user that the application is listening on the port that is defined, in a local environment this will be port 3001
 db.once(`open`, () => {
     app.listen(PORT, () => {
         console.log(`API server is running on port ${PORT}.`);
     });
 });
-
-/*
-Require fucntionality for the application, 
-
-i need to be able to view a list of all the users that are registedered inside of the database.
-
-i need to be able to add users, delete users, along with updating the information for each one individually.
-
-i need to be able to add thoughts that are connected to the users information and that is saved ho it belongs too, along ith this i ill ant the subdocum,ent inside of the thoughts model to be reactions that have been applied to the individual thoughts.
-
-API ROUTES that i need to make.
-
-get user - show all
-get user:id - show one according to the id
-post user - add a new user to the db
-put user:id - update the information for a user
-*/

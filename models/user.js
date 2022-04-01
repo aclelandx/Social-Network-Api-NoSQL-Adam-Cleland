@@ -25,7 +25,7 @@ const userSchema = new mongoose.Schema({
     // Thought will be populated from the controller as an array of the _id's of related thoughts.
     thoughts: [Thought],
     // friends will be populated from the controller as an array of the _id's of the users friends
-    friends: [User]
+    friends: []
 },
     {
         toJSON: {

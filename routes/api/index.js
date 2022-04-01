@@ -1,4 +1,4 @@
-// imports npm package for express router and saves it into a constant variable valled router.
+// imports npm package for express router and saves it into a constant variable called router.
 const router = require(`express`).Router();
 // import the thoughtRoute from files
 const thoughtRoute = require(`./thoughtRoute`);
@@ -9,6 +9,9 @@ const userRoute = require(`./userRoute`);
 router.use(`/users`, userRoute);
 // send the endpoint of /api/thoughts and directs it to the thoughRoutes file
 router.use(`/thoughts`, thoughtRoute);
+
+router.use((req, res) => { res.status(404).json(`incorrect route`) });
+
 
 // exports the router to be imported Elsewhere
 module.exports = router;
