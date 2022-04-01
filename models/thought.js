@@ -1,7 +1,10 @@
+// import mongoose npm package.
 const mongoose = require(`mongoose`);
+// imports the reaction schema that will be a sub-document of the thoughts model.
 const reactions = require(`./reaction`)
 
-const thoughSchema = new mongoose.Schema({
+// defines a new mongoose schema called thoughtSchema
+const thoughtSchema = new mongoose.Schema({
     thoughtText: {
         type: String,
         required: true,
@@ -27,4 +30,8 @@ const thoughSchema = new mongoose.Schema({
     id: false,
 })
 
-thoughSchema.virtual(`reactionCount`).get(function () { return this.reactions.length })
+thoughtSchema.virtual(`reactionCount`).get(function () { return this.reactions.length });
+
+const Thought = mongoose.model(`Thought`, thoughtSchema);
+
+module.exports = Thought;

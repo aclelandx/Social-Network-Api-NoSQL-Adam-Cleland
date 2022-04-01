@@ -35,9 +35,12 @@ const userSchema = new mongoose.Schema({
     }
 );
 
+// creates a virtual called friend count to return the number of friends that a user has.
 userSchema.virtual(`friendCount`).get(function () { return this.friends.length; });
 
+// defines User as a mongoose model that uses the schema created above.
 const User = mongoose.model(`User`, userSchema);
 
+// exports the user model to be utilized elsewhere
 module.exports = User;
 
