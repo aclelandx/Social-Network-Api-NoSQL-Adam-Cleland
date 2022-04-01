@@ -3,7 +3,7 @@ const mongoose = require(`mongoose`);
 // import the validator npm package, specifically the isEmail function to use for the validation of an email address when it is inside of the document.
 const { default: isEmail } = require("validator/lib/isEmail");
 // import out thought
-const thought = require(`./thought`);
+const Thought = require(`./thought`);
 
 // create the schema for the users.
 const userSchema = new mongoose.Schema({
@@ -22,9 +22,22 @@ const userSchema = new mongoose.Schema({
         // run the isEmail function from validator to ensure the section is an email address. if ti comes back as false then the message is given instead
         validate: [isEmail, `Please provide a valid email address.`]
     },
-    thoughts: [thought]
-})
+    // Thought will be populated from the controller as an array of the _id's of related thoughts.
+    thoughts: [Thought],
+    // friends will be populated from the controller as an array of the _id's of the users friends
+    friends: [User]
+},
+    {
+        toJSON: {
+            virtuals: true,
+        },
+        id: false,
+    }
+);
 
-const User = db.model(`User`, userSchema);
-const user = new User();
+userSchema.virtual(`friendCount`).get(function () { return this.friends.length; });
+
+const User = mongoose.model(`User`, userSchema);
+
+module.exports = User;
 
