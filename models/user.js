@@ -23,7 +23,7 @@ const userSchema = new mongoose.Schema({
         validate: [isEmail, `Please provide a valid email address.`]
     },
     // Thought will be populated from the controller as an array of the _id's of related thoughts.
-    thoughts: [Thought],
+    thoughts: [Thought.schema],
     // friends will be populated from the controller as an array of the _id's of the users friends
     friends: []
 },

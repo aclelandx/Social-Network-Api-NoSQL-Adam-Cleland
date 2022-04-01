@@ -13,7 +13,7 @@ router.get(`/:id`, showOneUser);
 router.post(`/`, addNewUser);
 
 // defines the route to update a users information.
-router.put(`/`, updateUser);
+router.put(`/:id`, updateUser);
 
 // defines the route to delete a user by the specified ID.
 router.delete(`/:id`, removeUser);
