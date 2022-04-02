@@ -45,11 +45,23 @@ const thoughtRequestHandler = {
     },
     // handles a post request to /api/thoughts/:thoughtId/reactions
     addReaction(req, res) {
-        res.json(`addnewreaction`)
+        Thought.findOneAndUpdate({ _id: req.params.thoughtId },
+            { $addToSet: { reactions: req.body } },
+            { new: true, runValidators: true })
+            .then((newReaction) => {
+                !newReaction ? res.status(404).json({ message: `No Though Found with that ID` })
+                    : res.json({ message: `Reaction has been added.` })
+            }).catch((err) => res.status(500).json(err));
     },
     // handles a delete request to /api/thoughts/:thoughtIf/reactions/:reactionId
     removeReaction(req, res) {
-        res.json(`removereaction`)
+        Thought.findOneAndUpdate({ _id: req.params.thoughtId },
+            { $pull: { reactions: req.params, reactionId } },
+            { new: true, runValidators: true })
+            .then((removeReaction) => {
+                !removeReaction ? res.status(404).json({ message: `Not Thought Found with that ID` })
+                    : res.json({ message: `Reaction has been deleted.` })
+            }).catch((err) => res.status(500).json(err));
     }
 
 };
