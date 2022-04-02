@@ -20,7 +20,7 @@ const thoughtSchema = new mongoose.Schema({
     // defines the information type for the username who made the post to be a String, and is to be required.
     username: {
         type: String,
-        required: true
+        required: true,
     },
     // creates an array that will be filled with the reactions that are attached to the thought as a sub-document
     reactions: [reactions]
@@ -38,7 +38,7 @@ const thoughtSchema = new mongoose.Schema({
 thoughtSchema.virtual(`reactionCount`).get(function () { return this.reactions.length });
 
 // creates a mongoose model called thought using the thoughtSchema, this is used for it to be utilized elsewhere
-const Thought = mongoose.model(`Thought`, thoughtSchema);
+const Thought = mongoose.model(`thought`, thoughtSchema);
 
 // export the Thought mongoose model so it can be imported elsewhere in the application.
 module.exports = Thought;

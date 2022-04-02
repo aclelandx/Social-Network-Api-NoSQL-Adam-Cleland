@@ -1,7 +1,7 @@
 // imports the express router package
 const router = require(`express`).Router();
 // imports the request handlers from the controller folder.
-const { showAllUsers, showOneUser, addNewUser, removeUser, updateUser, addFriend, removeFriend } = require(`../../controllers/userControl`)
+const { showAllUsers, showOneUser, addNewUser, removeUser, updateUser, addFriend, removeFriend } = require(`../../controllers/userController`)
 
 // defines the get all users route.
 router.get(`/`, showAllUsers);

@@ -23,9 +23,9 @@ const userSchema = new mongoose.Schema({
         validate: [isEmail, `Please provide a valid email address.`]
     },
     // Thought will be populated from the controller as an array of the _id's of related thoughts.
-    thoughts: [Thought.schema],
+    thoughts: [{ type: mongoose.Schema.Types.ObjectId, ref: `thought` }],
     // friends will be populated from the controller as an array of the _id's of the users friends
-    friends: []
+    friends: [{ type: mongoose.Schema.Types.ObjectId, ref: `user` }]
 },
     {
         toJSON: {
@@ -39,7 +39,7 @@ const userSchema = new mongoose.Schema({
 userSchema.virtual(`friendCount`).get(function () { return this.friends.length; });
 
 // defines User as a mongoose model that uses the schema created above.
-const User = mongoose.model(`User`, userSchema);
+const User = mongoose.model(`user`, userSchema);
 
 // exports the user model to be utilized elsewhere
 module.exports = User;
