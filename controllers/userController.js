@@ -1,5 +1,6 @@
 // imports the models from the models folder
 const { User, Reaction, Thought } = require(`../models`)
+const friendModifier = require(`../helpers/friendModifier`)
 
 // defines a constant variable that will be exported with all the methods that will be used to handle the client requests
 const userRequestHandler = {
@@ -59,33 +60,12 @@ const userRequestHandler = {
 
     // request handler for a post request to /api/users/:userId/friends/:friendId
     addFriend(req, res) {
-        // takes in the users request via the req.params to choose which user to add a friend to
-        User.findOneAndUpdate(
-            // where we are adding the information
-            { _id: req.params.userId },
-            // passes the mongo expression add to set to add in the id of the user that is the new friend of the user.
-            { $addToSet: { friends: req.params.friendId } },
-            // defines that the information that will be returned is the new rendition of the friends list and to have the validators run to make sure no false information has been added
-            { new: true, runValidators: true })
-            // handles any errors that may occur
-            .then((friendData) => {
-                !friendData ? res.json(404).json({ message: `Something went wrong with your request please check your inputs` }) : res.json({ message: `Friend added` })
-            }).catch((err) => res.status(500).json(err));
+        friendModifier(`add`, req.params.userId, req.params.friendId, res);
     },
 
     // request handler for a delete request to /api/users/:userId/friends/:friendId
     removeFriend(req, res) {
-        // takes in the users request via the req.params to choose which user that will have a friend deleted
-        User.findOneAndDelete(
-            { _id: req.params.userId },
-            // passed the mongo expression of $pull to remove a friend specified by the friendId from the target users friends list.
-            { $pull: { friends: req.params.friendId } },
-            // defines that the information that is to be returned will be the new rendition of the friends list and to have the validators run.
-            { new: true, runValidators: true })
-            // handles and errors that may occur
-            .then((friendData) => {
-                !friendData ? res.status(404).json({ message: `Something went wrong with your request please check your inputs` }) : res.json({ message: `Friend Deleted` })
-            }).catch((err) => res.status(500).json(err));
+        friendModifier(`delete`, req.params.userId, req.params.friendId, res)
     }
 }
 

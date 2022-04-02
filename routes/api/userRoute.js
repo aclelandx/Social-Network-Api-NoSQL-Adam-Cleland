@@ -19,7 +19,7 @@ router.put(`/:id`, updateUser);
 router.delete(`/:id`, removeUser);
 
 // defines the route to add a new friend to the chosen user.
-router.post(`/:userId/friends`, addFriend);
+router.post(`/:userId/friends/:friendId`, addFriend);
 
 // defines the route to remove a chosen friend from the specified user.
 router.delete(`/:userId/friends/:friendId`, removeFriend);
