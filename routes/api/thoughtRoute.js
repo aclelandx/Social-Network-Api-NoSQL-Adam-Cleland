@@ -22,7 +22,7 @@ router.delete(`/:id`, removeThought);
 router.post(`/:thoughtId/reactions`, addReaction);
 
 // defines the route for removing a reaction from a thought.
-router.delete(`/thoughtId/reactions/:reactionId`, removeReaction);
+router.delete(`/:thoughtId/reactions/:reactionId`, removeReaction);
 
 // exports the router to be imported elsewhere in the application.
 module.exports = router;
